@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    #app {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .5rem;
+
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .container {
+      display: flex;
+      gap: 5px
+    }
+
+    button {
+      width: fit-content;
+      padding: .5rem 1.5rem;
+    }
+
+    input { text-align: center; }
+  </style>
+
+  <title>Suma de números</title>
+</head>
+
+<body>
+  <div id='app'>
+    <div class='container'>
+      <input type='number' v-model='n1'>
+      <span>+</span>
+      <input type='number' v-model='n2'>
+    </div>
+    <button @click='add'>Sumar</button>
+
+    <span>El resultado es: {{ result }}.</span>
+  </div>
+
+  <script>
+    const { createApp, ref } = Vue
+
+    createApp({
+      setup() {
+        let result = ref(0)
+        const n1 = ref(0)
+        const n2 = ref(0)
+        const add = () => result.value = (+n1.value) + (+n2.value)
+
+        return { result, n1, n2, add }
+      },
+    }).mount('#app')
+  </script>
+</body>
+
+</html>
